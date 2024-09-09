@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor de Números a Letras</title>
+</head>
+<body>
+    <h1>Traductor de Números a Letras</h1>
+    <input type="number" id="numero" placeholder="Ingresa un número">
+    <button onclick="traducirNumero()">Traducir a Español</button>
+    <p id="resultado"></p>
+    
+    <script>
+        function traducirNumero() {
+            let numero = parseInt(document.getElementById('numero').value);
+            let resultado = '';
+            
+            const unidades = ['','UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO', 'SEIS', 'SIETE', 'OCHO', 'NUEVE', 'DIEZ', 
+                              'ONCE', 'DOCE', 'TRECE', 'CATORCE', 'QUINCE', 'DIECISEIS', 'DIECISIETE', 'DIECIOCHO', 'DIECINUEVE'];
+            const decenas = ['', '', 'VEINTE', 'TREINTA', 'CUARENTA', 'CINCUENTA', 'SESENTA', 'SETENTA', 'OCHENTA', 'NOVENTA'];
+            
+            if (numero < 20) {
+                resultado = unidades[numero];
+            } else if (numero < 100) {
+                resultado = decenas[Math.floor(numero / 10)] + (numero % 10 === 0 ? '' : ' Y ' + unidades[numero % 10]);
+            } else {
+                resultado = 'Número no soportado';
+            }
+
+            document.getElementById('resultado').innerText = resultado;
+        }
+    </script>
+</body>
+</html>
